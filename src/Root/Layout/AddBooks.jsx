@@ -90,7 +90,7 @@ const AddBook = () => {
         
         <motion.button 
           type="submit" 
-          className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600 transition"
+          className="bg-blue-500 text-white p-2 rounded w-full hover:bg-[#1b1b1b] transition"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
