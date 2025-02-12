@@ -54,7 +54,7 @@ const handelUpdata = (id)=>
         
           {/* Update Button */}
           <button
-            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+            className="mt-4 bg-[#1b1b1b] text-white py-2 px-4 rounded hover:bg-blue-600"
             onClick={() => handelUpdata(book._id)}
           >
             Update
