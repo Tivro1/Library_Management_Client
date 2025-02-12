@@ -20,7 +20,7 @@ const handelUpdata = (id)=>
 }
 
   return (
-    <div className="p-4">
+    <div className="p-4 mt-6">
       <input 
   onKeyUp={(e) => setSerch(e.target.value)} 
   className="border border-gray-800 rounded-lg px-4 py-2 w-full sm:w-[500px] h-10 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" 

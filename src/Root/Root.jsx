@@ -10,7 +10,7 @@ const Root = () => {
                 <Navbar></Navbar>
              </header>
        
-        <main>
+        <main className="bg-[#1b1b1b] text-white">
             
              <Outlet></Outlet>
 

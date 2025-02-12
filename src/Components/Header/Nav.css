@@ -3,6 +3,10 @@
      .hidden {
          display: none;
      }
+     .hide
+     {
+         display: none;
+     }
      .md\:hidden {
          display: block;
      }
@@ -27,4 +31,97 @@
          display: block;
      }
  }
- 
+ nav {
+    position: relative;
+    margin: 0 auto;
+    /* width: 590px; */
+    height: 50px;
+    
+    border-radius: 8px;
+    font-size: 0;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: space-between;
+    padding: 0 7px;
+    /* overflow: hidden; */
+}
+
+nav a {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: rgb(206, 51, 51);
+    text-decoration: none;
+    line-height: 50px;
+    position: relative;
+    z-index: 1;
+    width: auto;
+   
+    display: block;
+    align-items: center;
+    text-align: center;
+    padding: 0 8px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    margin-top: 4px;
+    z-index: 0;
+    height: 40px;
+    background: #3d3e36;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+nav a:nth-child(1) {
+    width: 100px;
+}
+
+nav .start-home,
+nav a:nth-child(1):hover ~ .animation {
+    width: 100px;
+    left: 0;
+   
+}
+
+nav a:nth-child(2) {
+    width: 110px;
+   
+}
+
+nav a:nth-child(2):hover ~ .animation {
+    width: 110px;
+    left: 100px;
+    
+}
+
+nav a:nth-child(3) {
+    width: 100px;
+}
+
+nav a:nth-child(3):hover ~ .animation {
+    width: 100px;
+    left: 210px;
+}
+
+nav a:nth-child(4) {
+    width: 160px;
+}
+
+nav a:nth-child(4):hover ~ .animation {
+    width: 160px;
+    left: 310px;
+}
+
+nav a:nth-child(5) {
+    width: 120px;
+}
+
+nav a:nth-child(5):hover ~ .animation {
+    width: 120px;
+    left: 470px;
+}

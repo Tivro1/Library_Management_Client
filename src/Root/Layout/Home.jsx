@@ -14,7 +14,7 @@ const Home = () => {
       </Helmet>
 
       {/* Slider Section */}
-      <section className="w-full h-[500px] flex flex-col items-center justify-center mt-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-lg">
+      <section className="w-full h-[500px] flex flex-col items-center justify-center mt-6 bg-gradient-to-r bg-[#1b1b1b]  shadow-lg">
         <Slider />
       </section>
 

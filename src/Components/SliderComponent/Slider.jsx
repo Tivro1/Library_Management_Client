@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/swiper-bundle.css"; 
 import "./Slider.css"; 
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -48,10 +49,14 @@ const Slider = () => {
       480: { slidesPerView: 1, spaceBetween: 10 },
     },
   };
-
+     const navigate = useNavigate();
+      const handelButton = ()=>
+      {
+         navigate('/allbooks')
+      }
   return (
-    <div className="banner-container">
-      <strong className="text-2xl text-center text-indigo-600 font-bold mb-6">Our Best Selling Books</strong>
+    <div className="banner-container ">
+      <h2 className="text-2xl text-center text-[#d2e03d] font-bold mb-6 ">Our Best Selling Books</h2>
       <Swiper {...swiperParams}>
         {books.map((book, index) => (
           <SwiperSlide key={index}>
@@ -67,7 +72,7 @@ const Slider = () => {
                 style={{ backgroundImage: `url(${book.image})` }}
               ></div>
               <div className={`item-overlay ${isHovered ? 'show' : ''}`}>
-                <button className="btn-view-details">View Details</button>
+                <button onClick={()=> handelButton()} className="btn-view-details">View Details</button>
               </div>
             </div>
           </SwiperSlide>

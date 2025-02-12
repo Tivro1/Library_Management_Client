@@ -28,26 +28,31 @@ const Navbar = () => {
             <div className={`mt-2 w-11/12 h-14 mx-auto flex flex-row justify-between items-center ${user ? 'user-logged-in' : ''}`}>
 
                 {/* Logo Div */}
-                <div className='  w-[20%] h-full  overflow-hidden'>
+                <div className='  w-[20%] h-full  overflow-hidden hide'>
 
                     <img className='w-[`100px] h-full rounded-md object-cover ' src={logo} alt="" />
 
                 </div>
 
                 {/* Route Div */}
-                <div className='flex flex-row gap-3 font-bold hidden md:flex'>
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Home</NavLink>
-                    {user && (
-                        <div className='flex gap-2'>
-                            <NavLink to="/allbooks" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>All Books</NavLink>
-                            <NavLink to="/addbooks" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Add Books</NavLink>
-                            <NavLink to="/borrowed" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Borrowed Books</NavLink>
-                        </div>
-                    )}
-                </div>
+                <nav>
+    <div className="flex flex-row font-bold hidden md:flex relative">
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Home</NavLink>
+        {user && (
+            <>
+                <NavLink to="/allbooks" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>All Books</NavLink>
+                <NavLink to="/addbooks" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Add</NavLink>
+                <NavLink to="/borrowed" className={({ isActive }) => (isActive ? 'text-red-500' : '')}>Borrowed</NavLink>
+            </>
+        )}
+        <div className="animation"></div>
+    </div>
+</nav>
 
-                <div className='md:hidden'>
-                    <span className='text-sm font-serif font-bold text-yellow-400'>LR-<span className='text-green-400'>Shelf</span></span>
+{/* Logo in Phone view */}
+                <div className='md:hidden w-[100px] h-[50px]  '>
+                   
+                    <img className='w-full h-full ml-[30px] object-cover rounded-lg ' src={logo} alt="" />
                 </div>
 
                 {/* Hamburger Icon for Small Screens */}
@@ -72,7 +77,7 @@ const Navbar = () => {
                     {user && (
                         <div className="relative group w-40 h-[120px] flex items-center bg-transparent">
                             {/* User Photo */}
-                            <div className=" flex flex-col items-center justify-center w-full">
+                            <div className=" flex flex-col items-center justify-center w-full mr-10">
                                 <img
                                     src={userPhoto}
                                     alt="User Image"

@@ -52,7 +52,7 @@ const FeaturedBooks = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-semibold mb-6">Featured Books</h2>
+      <h2 className=" text-2xl font-semibold mb-6  "><span className='p-2 text-[#1b1b1b] border-b-2 border-r-2 border-[#1b1b1b] rounded-lg'>Featured Books</span></h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {
           featuredBooks.map(res => (
@@ -97,9 +97,9 @@ const FeaturedBooks = () => {
   {/* Details Button */}
   <button
     onClick={() => goAllBookPage()}
-    className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+    className="mt-4 bg-[#1b1b1b] text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
   >
-    Details
+   More Books
   </button>
 </div>
 

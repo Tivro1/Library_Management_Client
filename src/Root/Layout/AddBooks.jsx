@@ -3,175 +3,100 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
 
 const AddBook = () => {
   const [bookData, setBookData] = useState({
-    image: '', // This will store the image URL
+    image: '',
     name: '',
     quantity: 0,
     author: '',
     category: '',
     description: '',
     rating: 1,
-    email: '', // Add email to the state
+    email: '',
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setBookData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleImageUpload = (e) => {
-    const value = e.target.value;
-    setBookData((prevData) => ({
-      ...prevData,
-      image: value, // Set the URL instead of a file
-    }));
+    setBookData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = {
-      email: bookData.email,
-      image: bookData.image, // Use the URL here
-      name: bookData.name,
-      quantity: bookData.quantity,
-      author: bookData.author,
-      category: bookData.category,
-      description: bookData.description,
-      rating: bookData.rating,
-    };
-
     try {
-      // Send the form data to the server
-      await axios.post('https://libraymanagement-nu.vercel.app/allbooks', formData, {
-        headers: {
-          'Content-Type': 'application/json', // Set as JSON
-        },
+      await axios.post('https://libraymanagement-nu.vercel.app/allbooks', bookData, {
+        headers: { 'Content-Type': 'application/json' },
       });
-      Swal.fire({
-        icon: 'success',
-        title: 'Added Book Successfully',
-        text: 'Book has been added.',
-      });
+      Swal.fire({ icon: 'success', title: 'Added Book Successfully', text: 'Book has been added.' });
     } catch (error) {
       toast.error(`Failed to add book: ${error.response?.data?.message || error.message}`);
     }
   };
 
   return (
-    <div className="p-6">
-         <Helmet>
+    <div className="p-6 bg-black min-h-screen text-white mt-6">
+      <Helmet>
         <title>Add Books</title>
       </Helmet>
-      <h2 className="text-2xl font-bold">Add New Book</h2>
-      <form onSubmit={handleSubmit} className="mt-4 space-y-4">
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={bookData.email}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
-          />
-        </div>
-        <div>
-          <label>Book Cover (Image URL)</label>
-          <input
-            type="text"
-            name="image"
-            value={bookData.image}
-            onChange={handleImageUpload}
-            placeholder="Enter image URL"
-            className="border p-2 w-full"
-          />
-        </div>
-        <div>
-          <label>Book Title</label>
-          <input
-            type="text"
-            name="name"
-            value={bookData.name}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
-          />
-        </div>
-        <div>
-          <label>Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            value={bookData.quantity}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
-          />
-        </div>
-        <div>
-          <label>Author Name</label>
-          <input
-            type="text"
-            name="author"
-            value={bookData.author}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
-          />
-        </div>
-        <div>
-          <label>Category</label>
-          <select
-            name="category"
-            value={bookData.category}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
+      
+      <motion.h2 
+        className="text-2xl font-bold text-center mb-6"
+        initial={{ opacity: 0, y: -20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.5 }}
+      >
+        Add New Book
+      </motion.h2>
+
+      <motion.form 
+        onSubmit={handleSubmit} 
+        className="max-w-lg mx-auto space-y-4"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {['email', 'image', 'name', 'quantity', 'author', 'description', 'rating'].map((field, index) => (
+          <motion.div key={field} 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.3, delay: index * 0.1 }}
           >
+            <label className="block mb-1 capitalize">{field.replace('_', ' ')}</label>
+            <input
+              type={field === 'quantity' || field === 'rating' ? 'number' : 'text'}
+              name={field}
+              value={bookData[field]}
+              onChange={handleInputChange}
+              required
+              className="border p-2 w-full text-black"
+            />
+          </motion.div>
+        ))}
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.7 }}
+        >
+          <label className="block mb-1">Category</label>
+          <select name="category" value={bookData.category} onChange={handleInputChange} required className="border p-2 w-full text-black">
             <option value="Novel">Fiction</option>
             <option value="Thriller">Non-Fiction</option>
             <option value="History">History</option>
             <option value="Drama">Science</option>
           </select>
-        </div>
-        <div>
-          <label>Short Description</label>
-          <textarea
-            name="description"
-            value={bookData.description}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
-          />
-        </div>
-        <div>
-          <label>Rating</label>
-          <input
-            type="number"
-            name="rating"
-            min="1"
-            max="5"
-            value={bookData.rating}
-            onChange={handleInputChange}
-            required
-            className="border p-2 w-full"
-          />
-        </div>
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+        </motion.div>
+        
+        <motion.button 
+          type="submit" 
+          className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600 transition"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           Add Book
-        </button>
-      </form>
-
-      <div className="mt-6">
-        <h3 className="font-semibold">Book Content</h3>
-        <p>This is a static text providing more information about the book.</p>
-      </div>
+        </motion.button>
+      </motion.form>
     </div>
   );
 };

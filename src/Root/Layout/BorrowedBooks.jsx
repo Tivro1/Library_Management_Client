@@ -45,7 +45,7 @@ const BorrowedBooks = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 mt-6">
       <Helmet>
         <title>My Borrowed Books</title>
       </Helmet>
