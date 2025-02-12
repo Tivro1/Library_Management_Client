@@ -29,71 +29,71 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<NotFound></NotFound>,
-    children:[
+    errorElement: <NotFound></NotFound>,
+    children: [
       {
-        path:"reg",
-        element:<Registration></Registration>
+        path: "reg",
+        element: <Registration></Registration>
       },
       {
-        path:"login",
-        element:<Loging></Loging>
+        path: "login",
+        element: <Loging></Loging>
       },
       {
-        path:"/",
-        element:<Home></Home>
+        path: "/",
+        element: <Home></Home>
       },
       {
-        path:"/fiction",
-        element:<FictionBook></FictionBook>,
-        loader: ()=> fetch('https://libraymanagement-nu.vercel.app/fiction')
+        path: "/fiction",
+        element: <FictionBook></FictionBook>,
+        loader: () => fetch('https://libraymanagement-nu.vercel.app/fiction')
       },
       {
-        path:"/science",
-        element:<ScienceBooks></ScienceBooks>,
-        loader:()=> fetch('https://libraymanagement-nu.vercel.app/science')
+        path: "/science",
+        element: <ScienceBooks></ScienceBooks>,
+        loader: () => fetch('https://libraymanagement-nu.vercel.app/science')
       },
       {
-        path:"/history",
-        element:<HistoryBooks></HistoryBooks>,
-        loader:()=> fetch('https://libraymanagement-nu.vercel.app/history')
+        path: "/history",
+        element: <HistoryBooks></HistoryBooks>,
+        loader: () => fetch('https://libraymanagement-nu.vercel.app/history')
       },
       {
-        path:"/non-fiction",
-        element:<NonFictionBooks></NonFictionBooks>,
-        loader:()=> fetch('https://libraymanagement-nu.vercel.app/nonfiction')
+        path: "/non-fiction",
+        element: <NonFictionBooks></NonFictionBooks>,
+        loader: () => fetch('https://libraymanagement-nu.vercel.app/nonfiction')
       },
       {
         path: "/details/:category/:id",
         element: <Private><Details /></Private>,
         loader: async ({ params }) => {
-          const { category, id } = params; 
-          const response = await fetch(`https://libraymanagement-nu.vercel.app/${category}/${id}`); 
+          const { category, id } = params;
+          const response = await fetch(`https://libraymanagement-nu.vercel.app/${category}/${id}`);
           if (!response.ok) {
-              throw new Error("Failed to fetch details");
+            throw new Error("Failed to fetch details");
           }
-          return response.json(); 
+          return response.json();
+        },
       },
-    },
-    {
-      path:"/borrowed",
-      element:<Private><BorrowedBooks></BorrowedBooks></Private>,
-      loader: ()=> fetch('https://libraymanagement-nu.vercel.app/borrow')
-    },
-    {
-      path:"/allbooks",
-      element:<Private><AllBooks></AllBooks></Private>,
-     
-    },
-    {
-      path:"/update",
-      element:<Private><UpdateBooks></UpdateBooks></Private>
-    },
-    {
-      path:"/addbooks",
-      element:<Private><AddBook></AddBook></Private>
-    }
-     
+      {
+        path: "/borrowed",
+        element: <Private><BorrowedBooks></BorrowedBooks></Private>,
+        loader: () => fetch('https://libraymanagement-nu.vercel.app/borrow')
+      },
+      {
+        path: "/allbooks",
+        element: <Private><AllBooks></AllBooks></Private>,
+
+      },
+      {
+        path: "/update",
+        element: <Private><UpdateBooks></UpdateBooks></Private>
+      },
+      {
+        path: "/addbooks",
+        element: <Private><AddBook></AddBook></Private>
+      }
+
     ]
   },
 ]);
@@ -105,8 +105,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <AuthProvider>
-  <RouterProvider router={router} />
-  </AuthProvider>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

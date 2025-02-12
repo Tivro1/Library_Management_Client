@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const SpecialOffers = () => {
 
   const specialOffers = [
@@ -26,7 +28,11 @@ const SpecialOffers = () => {
       discount: "15% OFF"
     }
   ];
-
+  const navigate = useNavigate();
+  const goAllBookPage = ()=>
+  {
+     navigate('/allbooks')
+  }
     return (
       <div className="container mx-auto p-4 mt-12">
         <h2 className="text-2xl font-semibold mb-6">Special Offers & Latest News</h2>
@@ -38,7 +44,7 @@ const SpecialOffers = () => {
                 <strong className="text-lg block font-semibold mb-2">{offer.title}</strong>
                 <p className="text-sm text-gray-600 mb-4">{offer.description}</p>
                 <span className="block text-sm text-gray-700 font-semibold">{offer.discount}</span>
-                <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <button    onClick={()=> goAllBookPage()} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
                   Shop Now
                 </button>
               </div>

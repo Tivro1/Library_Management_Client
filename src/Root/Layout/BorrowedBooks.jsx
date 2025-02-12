@@ -76,7 +76,9 @@ const BorrowedBooks = () => {
           ))}
         </div>
       ) : (
-        <p className="text-gray-600">No books borrowed by you.</p>
+        <div className="h-[700px]">
+          <p className="text-gray-600 font-bold text-3xl">No books borrowed by you.</p>
+        </div>
       )}
     </div>
   );

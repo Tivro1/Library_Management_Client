@@ -1,5 +1,7 @@
 
+
 import ReactStars from 'react-rating-stars-component';
+import { useNavigate } from 'react-router-dom';
 
 const FeaturedBooks = () => {
 
@@ -40,25 +42,13 @@ const FeaturedBooks = () => {
       rating: 4.5, 
       quantity: 8
     },
-    {
-      _id: "5",
-      image: "https://m.media-amazon.com/images/I/81c2DA7Lw2L._AC_UY218_.jpg", 
-      name: "Pride and Prejudice", 
-      author: "Jane Austen", 
-      category: "Romance", 
-      rating: 4.6, 
-      quantity: 12
-    },
-    {
-      _id: "6",
-      image: "https://m.media-amazon.com/images/I/71c4HiVmNrL._AC_UY218_.jpg", 
-      name: "Brave New World", 
-      author: "Aldous Huxley", 
-      category: "Science Fiction", 
-      rating: 4.7, 
-      quantity: 7
-    }
+    
   ];
+  const navigate = useNavigate();
+  const goAllBookPage = ()=>
+  {
+     navigate('/allbooks')
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -66,29 +56,53 @@ const FeaturedBooks = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {
           featuredBooks.map(res => (
-            <div key={res._id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <img src={res.image} alt="Book" className="w-full h-64 object-cover rounded-lg mb-4" />
-              <strong className="text-lg block font-semibold mb-2">{res.name}</strong>
-              <span className="block text-sm text-gray-600">Author Name: {res.author}</span>
-              <span className="block text-sm text-gray-600">Category: {res.category}</span>
+            <div 
+  key={res._id} 
+  className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col h-full"
+>
+  {/* Card Content */}
+  <div className="flex-grow">
+    <img 
+      src={res.image} 
+      alt="Book" 
+      className="w-full h-64 object-cover rounded-lg mb-4" 
+    />
+    <strong className="text-lg block font-semibold mb-2">
+      {res.name}
+    </strong>
+    <span className="block text-sm text-gray-600">
+      Author Name: {res.author}
+    </span>
+    <span className="block text-sm text-gray-600">
+      Category: {res.category}
+    </span>
 
-              {/* Rating component */}
-              <div className="flex items-center mt-2">
-                <ReactStars
-                  count={5}
-                  value={res.rating}
-                  edit={false}
-                  size={24}
-                  activeColor="#ffd700"
-                />
-                <strong className="ml-2">{`(${res.rating})`}</strong>
-              </div>
+    {/* Rating Component */}
+    <div className="flex items-center mt-2">
+      <ReactStars
+        count={5}
+        value={res.rating}
+        edit={false}
+        size={24}
+        activeColor="#ffd700"
+      />
+      <strong className="ml-2">{`(${res.rating})`}</strong>
+    </div>
 
-              <span className="block text-sm text-gray-600">Quantity: {res.quantity}</span>
-              <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                Details
-              </button>
-            </div>
+    <span className="block text-sm text-gray-600">
+      Quantity: {res.quantity}
+    </span>
+  </div>
+
+  {/* Details Button */}
+  <button
+    onClick={() => goAllBookPage()}
+    className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+  >
+    Details
+  </button>
+</div>
+
           ))
         }
       </div>

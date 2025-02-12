@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../ContexProvider/AuthProvider';
 import './Nav.css';
+import logo from '../../assets/logo.webp';
 
 const Navbar = () => {
     const { user, signout } = useContext(AuthContext);
@@ -27,8 +28,10 @@ const Navbar = () => {
             <div className={`mt-2 w-11/12 h-14 mx-auto flex flex-row justify-between items-center ${user ? 'user-logged-in' : ''}`}>
 
                 {/* Logo Div */}
-                <div className='  w-[20%] h-full rounded-full overflow-hidden'>
-                    <span className='text-3xl font-serif font-bold text-yellow-400'>LR-<span className='text-green-400'>Shelf</span></span>
+                <div className='  w-[20%] h-full  overflow-hidden'>
+
+                    <img className='w-[`100px] h-full rounded-md object-cover ' src={logo} alt="" />
+
                 </div>
 
                 {/* Route Div */}
@@ -42,10 +45,10 @@ const Navbar = () => {
                         </div>
                     )}
                 </div>
-                      
-               <div className='md:hidden'>
-               <span className='text-sm font-serif font-bold text-yellow-400'>LR-<span className='text-green-400'>Shelf</span></span>
-               </div>
+
+                <div className='md:hidden'>
+                    <span className='text-sm font-serif font-bold text-yellow-400'>LR-<span className='text-green-400'>Shelf</span></span>
+                </div>
 
                 {/* Hamburger Icon for Small Screens */}
                 <div className='iconn md:hidden'>
@@ -69,18 +72,21 @@ const Navbar = () => {
                     {user && (
                         <div className="relative group w-40 h-[120px] flex items-center bg-transparent">
                             {/* User Photo */}
-                            <img 
-                                src={userPhoto} 
-                                alt="User Image" 
-                                className="w-10 h-10 mx-auto rounded-full border-2 border-gray-300 shadow-md ml-[20px]"
-                            />
+                            <div className=" flex flex-col items-center justify-center w-full">
+                                <img
+                                    src={userPhoto}
+                                    alt="User Image"
+                                    className="w-10 h-10 rounded-full border-2 border-gray-300 shadow-md"
+                                />
+                            </div>
+
 
                             {/* Dropdown Menu */}
                             <div className="absolute hidden group-hover:flex flex-col items-center top-12 left-1/2 -translate-x-1/2 bg-white w-40 py-2 rounded-lg shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mt-6">
                                 <div className="px-3 py-1 w-full text-center text-gray-700 font-semibold bg-gray-100 rounded-t-lg">
                                     <h1>{user.displayName}</h1>
                                 </div>
-                                <button 
+                                <button
                                     onClick={handleLogout}
                                     className="w-3/4 px-4 py-1 text-sm text-white bg-red-500 rounded-md hover:bg-red-600 transition "
                                 >

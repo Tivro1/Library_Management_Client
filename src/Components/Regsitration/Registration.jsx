@@ -59,9 +59,9 @@ const Registration = () => {
    }
 
   return (
-   <div className="bg-cover bg-center h-screen"
+   <div className="bg-cover bg-center h-screen pt-[20px]"
    style={{ backgroundImage: `url(${background})` }}>
-     <div className="max-w-md mx-auto p-6 bg-transparent rounded shadow mt-4 ">
+     <div className="max-w-md mx-auto p-6 bg-transparent rounded shadow mt-4 border border-r-2 border-b-2 border-l-0 border-t-0">
       <h2 className="text-2xl font-bold mb-4">Registration Form</h2>
       <ToastContainer />
       <form onSubmit={handelReg}>
@@ -85,7 +85,7 @@ const Registration = () => {
         </div>
         <button onClick={showToast} type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Register</button>
         <div>
-             <span className="text-green-500 font-semibold">If you already have an account click to <NavLink className='text-blue-500 underline font-bold' to='/login'>Loging</NavLink></span>
+             <span className="text-black font-semibold">If you already have an account click to <NavLink className='text-[#1b1b1b] underline font-bold' to='/login'>Loging</NavLink></span>
         </div>
       </form>
       

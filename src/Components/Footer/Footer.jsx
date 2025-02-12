@@ -1,7 +1,7 @@
 
 
 
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa"; // Importing icons for social media
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa"; // Importing icons for social media
 import './Footer.css';
 const Footer = () => {
   return (
@@ -22,16 +22,14 @@ const Footer = () => {
         <div className="footer-social">
           <h3 className="footer-title">Follow Us</h3>
           <div className="social-icons">
-            <a href="https://facebook.com" className="social-icon">
+            <a href="https://www.facebook.com/kera.reo" className="social-icon">
               <FaFacebookF />
             </a>
-            <a href="https://twitter.com" className="social-icon">
-              <FaTwitter />
+            <a href="https://github.com/Tivro1" className="social-icon">
+              <FaGithub />
             </a>
-            <a href="https://instagram.com" className="social-icon">
-              <FaInstagram />
-            </a>
-            <a href="https://linkedin.com" className="social-icon">
+           
+            <a href="https://www.linkedin.com/in/sourav-das-tivro-hn/" className="social-icon">
               <FaLinkedinIn />
             </a>
           </div>
